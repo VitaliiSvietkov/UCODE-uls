@@ -18,6 +18,7 @@ void mx_uls_no_flags(void) {
     
     char **files = NULL;
     files = mx_strsplit(str, ' ');
+    files = mx_exclude_hidden(files);
     mx_sort_strarr(files);
     free(str);
     

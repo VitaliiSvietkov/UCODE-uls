@@ -6,4 +6,5 @@
 
 void mx_uls_no_flags(void);
 void mx_sort_strarr(char **arr);
+char **mx_exclude_hidden(char **arr);
 
