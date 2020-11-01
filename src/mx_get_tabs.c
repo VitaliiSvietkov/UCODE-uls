@@ -20,10 +20,6 @@ char *mx_get_tabs(int rows, int col, int curr, char **files) {
         }
     }
     int len_curr = mx_strlen(files[curr]);
-    /*mx_printchar(' ');
-    mx_printint(len_curr);
-    mx_printchar('|');
-    mx_printint(max_len);*/
     if (len_curr < max_len) {
         while (len_curr != max_len) {
             tabs = mx_strjoin(tabs, " ");

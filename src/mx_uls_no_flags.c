@@ -3,7 +3,7 @@
 void mx_uls_no_flags(void) {
     DIR *dir;
     struct dirent *sd = NULL;
-    struct winsize max;
+    struct winsize max; //to get window size (colomns)
     ioctl(0, TIOCGWINSZ, &max);
     dir = opendir(".");
     
@@ -29,12 +29,16 @@ void mx_uls_no_flags(void) {
     
     int rows = mx_get_rows(files, len, max.ws_col);
     int col = len / rows;
+    if (len % rows != 0)
+        col++;
     
-    int k; //index of file;
+    int k; //index of current file;
     for (int i = 0; i < rows; i++) {
         k = i;
         int el_col = 0; //index of first element of colomn
         for (int j = 0; j < col; j++) {
+            if (files[k] == NULL)
+                break;
             mx_printstr(files[k]);
             if (files[k + 1] == NULL)
                 break;
@@ -44,7 +48,7 @@ void mx_uls_no_flags(void) {
             else
                 tabs = mx_get_tabs(rows, el_col, k, files);
             k += rows;
-            el_col += 3;
+            el_col += rows;
             if (j < col - 1)
                 mx_printstr(tabs);
             if (rows > 1)
