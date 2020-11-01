@@ -3,6 +3,8 @@
 void mx_uls_no_flags(void) {
     DIR *dir;
     struct dirent *sd = NULL;
+    struct winsize max;
+    ioctl(0, TIOCGWINSZ, &max);
     dir = opendir(".");
     
     if (dir == NULL) {
@@ -25,36 +27,28 @@ void mx_uls_no_flags(void) {
     int len = 0; //number of elements in "files"
     for (; files[len] != NULL; len++);
     
-    int rows = len / 11;
-    if (len % 11 != 0)
-        rows++;
-    
-    int col = 0;
-    if (rows == 1)
-        col = len;
-    else {
-        col = len / 2; //not valid, we need count lengs of names
-        if (len % 2 != 0)
-            col++;
-    }
+    int rows = mx_get_rows(files, len, max.ws_col);
+    int col = len / rows;
     
     int k; //index of file;
     for (int i = 0; i < rows; i++) {
         k = i;
+        int el_col = 0; //index of first element of colomn
         for (int j = 0; j < col; j++) {
             mx_printstr(files[k]);
+            if (files[k + 1] == NULL)
+                break;
             char *tabs;
             if (rows == 1)
                 tabs = "  ";
             else
-                tabs = mx_get_tabs(rows, j * 2, k, files);
+                tabs = mx_get_tabs(rows, el_col, k, files);
             k += rows;
+            el_col += 3;
             if (j < col - 1)
                 mx_printstr(tabs);
             if (rows > 1)
                 free(tabs);
-            if (files[k] == NULL)
-                break;
         }
         mx_printchar('\n');
     }

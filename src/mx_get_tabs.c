@@ -13,9 +13,9 @@ char *mx_get_tabs(int rows, int col, int curr, char **files) {
 	int len1 = mx_strlen(files[tmp_col]);
 	int len2 = mx_strlen(files[tmp_col + 1]);
 	if (len1 != len2) {
-	    if (len1 > len2)
+	    if (len1 > len2 && max_len < len1)
                 max_len = len1;
-            else
+            if (len1 < len2 && max_len < len2)
                 max_len = len2;
         }
     }
