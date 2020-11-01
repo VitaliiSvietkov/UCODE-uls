@@ -6,6 +6,7 @@
 #include <fcntl.h>
 
 //Additional functions
+int mx_abs(int i);
 bool mx_isdigit(int c);
 bool mx_isupper(int c);
 bool mx_isalpha(int c);
