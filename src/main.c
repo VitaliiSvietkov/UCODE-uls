@@ -2,10 +2,15 @@
 
 int main(int argc, char *argv[]) {
     char *dir_name;
+    t_options opts;
+    mx_init_options(&opts);
     char *flags = mx_get_flags(argc, argv);
     if (mx_strlen(flags) == 0) {
         dir_name = ".";
         mx_uls_no_flags(dir_name);
+    }
+    else {
+    
     }
     
     /*switch(argc){
