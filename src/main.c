@@ -2,7 +2,13 @@
 
 int main(int argc, char *argv[]) {
     char *dir_name;
-    switch(argc){
+    char *flags = mx_get_flags(argc, argv);
+    if (mx_strlen(flags) == 0) {
+        dir_name = ".";
+        mx_uls_no_flags(dir_name);
+    }
+    
+    /*switch(argc){
         case 1:
             dir_name = ".";
             mx_uls_no_flags(dir_name);
@@ -28,7 +34,7 @@ int main(int argc, char *argv[]) {
             break;
         default:
             break;
-    }
+    }*/
     return 0;
 }
 
