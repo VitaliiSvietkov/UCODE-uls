@@ -1,16 +1,20 @@
 #include "../inc/uls.h"
 
 int main(int argc, char *argv[]) {
-    char *dir_name;
     t_options opts;
     mx_init_options(&opts);
     char *flags = mx_get_flags(argc, argv);
+    char **elements = mx_get_elements(argc, argv);
+    
+    if (elements != NULL)
+        mx_sort_strarr(elements);
+        
     if (mx_strlen(flags) == 0) {
-        dir_name = ".";
-        mx_uls_no_flags(dir_name);
+        mx_uls_no_flags(elements);
     }
     else {
-    
+        
+
     }
     
     /*switch(argc){
