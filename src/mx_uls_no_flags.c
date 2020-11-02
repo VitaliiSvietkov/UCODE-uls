@@ -1,11 +1,11 @@
 #include "../inc/uls.h"
 
-void mx_uls_no_flags(void) {
+void mx_uls_no_flags(char *dir_name) {
     DIR *dir;
     struct dirent *sd = NULL;
     struct winsize max; //to get window size (colomns)
     ioctl(0, TIOCGWINSZ, &max);
-    dir = opendir(".");
+    dir = opendir(dir_name);
     
     if (dir == NULL) {
         mx_printerr("ERROR!\n"); //change for errno with perror
