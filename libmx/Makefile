@@ -1,7 +1,7 @@
 .PHONY: all libmx uninstall clean reinstall
 
-SRCS := $(wildcard *.c)
-HDRS := $(wildcard ../inc/libmx.h)
+SRCS := $(wildcard src/*.c)
+HDRS := $(wildcard inc/libmx.h)
 
 all: libmx
 
