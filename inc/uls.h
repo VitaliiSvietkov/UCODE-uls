@@ -2,10 +2,13 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/ioctl.h>
+#include <sys/stat.h>
+#include <time.h>
 #include <dirent.h>
-#include "libmx.h"
+#include "../libmx/inc/libmx.h"
 
-void mx_uls_no_flags(void);
+void mx_uls_no_flags(char *dir_name);
+void mx_flag_l(char* dir_name);
 void mx_sort_strarr(char **arr);
 char **mx_exclude_hidden(char **arr);
 void mx_uls_usage(void);
