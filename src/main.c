@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
         mx_uls_no_flags(elements);
     }
     else {
-        
+        mx_set_options(&opts, flags);
 
     }
     
