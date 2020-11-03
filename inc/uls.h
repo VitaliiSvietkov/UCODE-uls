@@ -26,4 +26,6 @@ char *mx_get_flags(int argc, char **argv);
 bool mx_check_flag(char c);
 char **mx_get_elements(int argc, char **argv);
 void mx_set_options(t_options *opts, char *flags);
+void mx_fill_types(char **elements, int n, char ***directories, char ***files);
+void mx_loop_output_dirs(char **elements, int n, struct winsize max);
 

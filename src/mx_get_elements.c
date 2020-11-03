@@ -7,15 +7,17 @@ char **mx_get_elements(int argc, char **argv) {
             counter++;
     if (counter == 0)
         return NULL;
+    
     char **res = (char **)malloc(counter + 1);
     int index = 0;
     for (int i = 1; i < argc; i++) {
         if (argv[i][0] != '-') {
+            res[index] = (char *)malloc(mx_strlen(argv[i]));
             res[index] = mx_strdup(argv[i]);
             index++;
         }
     }
-    res[counter] = NULL;
+    res[index] = NULL;
     return res;
 }
 
