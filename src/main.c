@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
     
     if (elements != NULL)
         mx_sort_strarr(elements);
-        
+    
     if (mx_strlen(flags) == 0) {
         mx_uls_no_flags(elements);
     }

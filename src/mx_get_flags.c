@@ -15,8 +15,7 @@ char *mx_get_flags(int argc, char **argv) {
                     free(res);
                     mx_uls_usage();
                 }
-                mx_realloc(res, mx_strlen(res) + 1);
-                res[mx_strlen(res)] = argv[i][j];
+                res = mx_strjoin(res, &argv[i][j]);
                 j++;
             }
         }

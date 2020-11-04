@@ -23,15 +23,17 @@ void mx_loop_output_dirs(char **elements, int n, struct winsize max) {
 		str = mx_strjoin(str, " ");
 	    }
 	    
-	    char **files = NULL;
-	    files = mx_strsplit(str, ' ');
-	    files = mx_exclude_hidden(files);
-	    mx_sort_strarr(files);
-	    free(str);
-	    
-	    mx_uls_print_table(files, &max);
-	    
-	    mx_del_strarr(&files);
+	    if (str != NULL) {
+		    char **files = NULL;
+		    files = mx_strsplit(str, ' ');
+		    files = mx_exclude_hidden(files);
+		    mx_sort_strarr(files);
+		    free(str);
+		    
+		    mx_uls_print_table(files, &max);
+		    
+		    mx_del_strarr(&files);
+	    }
 	    closedir(dir);
 	    if (n > 1 && elements[i + 1] != NULL)
 	        mx_printchar('\n');
