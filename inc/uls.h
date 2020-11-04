@@ -1,11 +1,17 @@
 #pragma once
 #include <stdlib.h>
+#include <errno.h>
+#include <stdio.h>
 #include <sys/types.h>
-#include <sys/ioctl.h>
 #include <sys/stat.h>
+#include <sys/sysmacros.h>
+#include <sys/ioctl.h>
+#include <fcntl.h>
 #include <time.h>
 #include <dirent.h>
 #include "../libmx/inc/libmx.h"
+
+extern int errno;
 
 typedef struct s_options
 {

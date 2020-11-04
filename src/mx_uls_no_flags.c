@@ -1,7 +1,6 @@
 #include "../inc/uls.h"
 
 void mx_uls_no_flags(char **elements) {
-    //DIR *dir;
     struct winsize max; //to get window size (colomns)
     ioctl(0, TIOCGWINSZ, &max);
     
@@ -15,13 +14,14 @@ void mx_uls_no_flags(char **elements) {
         elements[1] = NULL;
     }
     char **directories = NULL;
-    char **files_reg = NULL;
-    mx_fill_types(elements, n, &directories, &files_reg);
-    if (files_reg != NULL) {
-        mx_uls_print_table(files_reg, &max);
+    char **files = NULL;
+    mx_fill_types(elements, n, &directories, &files);
+    
+    if (files != NULL) {
+        mx_uls_print_table(files, &max);
         if (directories != NULL)
             mx_printchar('\n');
-        mx_del_strarr(&files_reg);
+        mx_del_strarr(&files);
     }
     if (directories != NULL) {
         mx_loop_output_dirs(directories, n, max);
