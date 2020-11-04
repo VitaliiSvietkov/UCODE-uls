@@ -7,9 +7,8 @@ void mx_fill_types(char **elements, int n, char ***directories, char ***files) {
     char *str_dirs = NULL;
     for (int i = 0; i < n; i++) {
         if (stat(elements[i], &st) < 0) {
-            char *mx_err = "uls: cannot access '";
+            char *mx_err = "uls: ";
             mx_err = mx_strjoin(mx_err, elements[i]);
-            mx_err = mx_strjoin(mx_err, "'");
             perror(mx_err);
             free(mx_err);
             continue;

@@ -9,9 +9,9 @@ char *mx_get_flags(int argc, char **argv) {
         if (argv[i][0] == '-') {
             while (argv[i][j] != '\0') {
                 if (!mx_check_flag(argv[i][j])) {
-                    mx_printerr("uls: invalid option -- '");
+                    mx_printerr("uls: illegal option -- ");
                     mx_printerr(&argv[i][j]);
-                    mx_printerr("'\n");
+                    mx_printerr("\n");
                     free(res);
                     mx_uls_usage();
                 }
