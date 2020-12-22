@@ -7,7 +7,7 @@ all: uls
 
 uls:
 	@make -C libmx/
-	@clang -std=c11 -Wall -Wextra -Werror -Wpedantic ${SRCS} ${HDRS} libmx.a
+	@clang -Wall -Wextra -Werror -Wpedantic ${SRCS} ${HDRS} libmx.a
 	@mv a.out uls
 
 uninstall: clean

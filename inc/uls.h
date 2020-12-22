@@ -1,4 +1,5 @@
 #pragma once
+//#define _POSIX_C_SOURCE
 #include <stdlib.h>
 #include <errno.h>
 #include <stdio.h>
@@ -21,7 +22,7 @@ typedef struct s_options
 
 void mx_init_options(t_options *opts);
 void mx_uls_print_table(char **files, struct winsize *max);
-void mx_uls_no_flags(char **elements);
+void mx_uls(char **elements, t_options *opts);
 void mx_flag_l(char* dir_name);
 void mx_sort_strarr(char **arr);
 char **mx_exclude_hidden(char **arr);
@@ -33,5 +34,5 @@ bool mx_check_flag(char c);
 char **mx_get_elements(int argc, char **argv);
 void mx_set_options(t_options *opts, char *flags);
 void mx_fill_types(char **elements, int n, char ***directories, char ***files);
-void mx_loop_output_dirs(char **elements, int n, struct winsize max);
+void mx_loop_output_dirs(char **elements, int n, struct winsize max, t_options *opts);
 

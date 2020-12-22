@@ -1,12 +1,14 @@
 #include "../inc/uls.h"
 
 void mx_uls_print_table(char **files, struct winsize *max) {
+	int istty = isatty(fileno(stdout));
+	
+	if (!istty) {
+		mx_print_strarr(files, "\n");
+		return;
+	}
     int len = 0; //number of elements in "files"
-    for (; files[len] != NULL; len++);    
-    /*int rows = mx_get_rows(files, len, max->ws_col);
-    int col = len / rows;
-    if (len % rows != 0)
-	col++;*/
+    for (; files[len] != NULL; len++);
     int col = mx_get_col(files, len, max->ws_col);
     int rows = len / col;
     if (len % col != 0)

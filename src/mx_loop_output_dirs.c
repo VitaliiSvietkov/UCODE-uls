@@ -1,6 +1,6 @@
 #include "../inc/uls.h"
 
-void mx_loop_output_dirs(char **elements, int n, struct winsize max) {
+void mx_loop_output_dirs(char **elements, int n, struct winsize max, t_options *opts) {
     DIR* dir = NULL;
     struct dirent *sd = NULL;
     char *str;
@@ -26,12 +26,14 @@ void mx_loop_output_dirs(char **elements, int n, struct winsize max) {
 	    
 	    char **files = NULL;
 	    files = mx_strsplit(str, ' ');
-	    files = mx_exclude_hidden(files);
+		if (!opts->using_a)
+	    	files = mx_exclude_hidden(files);
 	    free(str);
 	    if (files != NULL) {
 	        mx_sort_strarr(files);
-	    
-	        mx_uls_print_table(files, &max);
+	    	
+			if(!opts->using_l)
+	        	mx_uls_print_table(files, &max);
 		    
 	        mx_del_strarr(&files);
 	    }
