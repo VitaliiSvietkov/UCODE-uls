@@ -11,7 +11,6 @@ int main(int argc, char *argv[]) {
         mx_sort_strarr(elements);
 
     mx_uls(elements, opts);
-    free(opts);
     
     /*switch(argc){
         case 1:

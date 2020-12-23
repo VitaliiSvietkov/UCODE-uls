@@ -29,7 +29,7 @@ void mx_uls(char **elements, t_options *opts) {
         mx_loop_output_dirs(directories, n, max, opts);
         mx_del_strarr(&directories);
     }
-    
+    free(opts);
     exit(0);
 }
 
