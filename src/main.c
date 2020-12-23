@@ -1,19 +1,17 @@
 #include "../inc/uls.h"
 
 int main(int argc, char *argv[]) {
-    t_options opts;
-    mx_init_options(&opts);
+    t_options *opts = (t_options *)malloc(sizeof(t_options));
+    mx_init_options(opts);
     
-    char *flags = mx_get_flags(argc, argv);
+    mx_get_flags(argc, argv, opts);
     char **elements = mx_get_elements(argc, argv);
     
     if (elements != NULL)
         mx_sort_strarr(elements);
-    
-    if (flags != NULL)
-        mx_set_options(&opts, flags);
 
-    mx_uls(elements, &opts);
+    mx_uls(elements, opts);
+    free(opts);
     
     /*switch(argc){
         case 1:

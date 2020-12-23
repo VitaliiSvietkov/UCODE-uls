@@ -22,7 +22,7 @@ void mx_flag_l(char* dir_name) {
     
     char **files = NULL;
     files = mx_strsplit(str, ' ');
-    files = mx_exclude_hidden(files);
+    files = mx_exclude_hidden(files, NULL);
     mx_sort_strarr(files);
     free(str);
     

@@ -18,20 +18,7 @@ void mx_uls_print_table(char **files, struct winsize *max) {
 	while (fact_len % rows != 0)
 		fact_len++;
 	col = fact_len / rows;
-	/*
-	if (col * rows > len && (col * rows - len > rows)) {
-		int tmp_len = col * rows;
-		while (tmp_len > len) {
-			col -= 1;
-			tmp_len -= rows;
-		}
-	}
-    printf("%d\n%d\n\n", len, fact_len);
-    mx_printint(col);
-    mx_printchar('\n');
-    mx_printint(rows);
-    mx_printchar('\n');
-	*/
+
     int k; //index of current file;
     bool reached_end = false;
     for (int i = 0; i < rows; i++) {
