@@ -3,7 +3,7 @@
 int main(int argc, char *argv[]) {
     t_options opts;
     mx_init_options(&opts);
-
+    
     char *flags = mx_get_flags(argc, argv);
     char **elements = mx_get_elements(argc, argv);
     

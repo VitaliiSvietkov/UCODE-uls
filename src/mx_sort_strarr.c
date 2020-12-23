@@ -1,4 +1,5 @@
 #include "../inc/uls.h"
+#include <string.h>
 
 void mx_sort_strarr(char **arr) {
     int len = 0;
