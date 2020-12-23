@@ -6,12 +6,12 @@ int mx_strcmp(const char *s1, const char *s2) {
     for (int i = 0, j = 0; i < len1 && j < len2; i++, j++) {
         char c1 = *s1;
         char c2 = *s2;
-        if (!mx_isalpha(c1)) {
+        if (!mx_isalpha(c1) && !mx_isdigit(c1)) {
             s1++;
             j--;
             continue;
         }
-        if (!mx_isalpha(c2)) {
+        if (!mx_isalpha(c2) && !mx_isdigit(c2)) {
             s2++;
             i--;
             continue;

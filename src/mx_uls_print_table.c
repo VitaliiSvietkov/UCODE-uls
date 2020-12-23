@@ -11,13 +11,27 @@ void mx_uls_print_table(char **files, struct winsize *max) {
     for (; files[len] != NULL; len++);
     int col = mx_get_col(files, len, max->ws_col);
     int rows = len / col;
-    if (len % col != 0)
+    if (len % col != 0) {
         rows++;
-    
+	}
+	int fact_len = len;
+	while (fact_len % rows != 0)
+		fact_len++;
+	col = fact_len / rows;
+	/*
+	if (col * rows > len && (col * rows - len > rows)) {
+		int tmp_len = col * rows;
+		while (tmp_len > len) {
+			col -= 1;
+			tmp_len -= rows;
+		}
+	}
+    printf("%d\n%d\n\n", len, fact_len);
     mx_printint(col);
     mx_printchar('\n');
     mx_printint(rows);
     mx_printchar('\n');
+	*/
     int k; //index of current file;
     bool reached_end = false;
     for (int i = 0; i < rows; i++) {
