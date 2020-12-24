@@ -32,12 +32,11 @@ void mx_loop_output_dirs(char **elements, int n, struct winsize max, t_options *
 	    	files = mx_exclude_hidden(files, opts);
 	    free(str);
 
-	    if (files != NULL) {	   
-
+	    if (files != NULL) {
 			if(!opts->using_l)
 	        	mx_uls_print_table(files, &max);
 			else
-				mx_uls_long_output(files, opts);
+				mx_uls_long_output(files, mx_strjoin(elements[i], "/"), opts);
 
 	        mx_del_strarr(&files);
 	    }

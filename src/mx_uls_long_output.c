@@ -1,6 +1,6 @@
 #include "../inc/uls.h"
 
-void mx_uls_long_output(char **files, t_options *opts) {
+void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
     int len = 0;
     for (; files[len] != NULL; ++len);
     if (opts) {};
@@ -11,12 +11,25 @@ void mx_uls_long_output(char **files, t_options *opts) {
     int size_len = mx_get_max_size_len(files);
 
     for (int i = 0; i < len; ++i) {
-        stat(files[i], &buf);
+        char *path = mx_strjoin(dir_path, files[i]);
+        stat(path, &buf);
+        free(path);
+        free(dir_path);
 
         if (S_ISDIR(buf.st_mode))
             mx_printchar('d');
-        else
+        if (S_ISREG(buf.st_mode))
             mx_printchar('-');
+        if (S_ISFIFO(buf.st_mode))
+            mx_printchar('p');
+        if (S_ISLNK(buf.st_mode))
+            mx_printchar('l');
+        if (S_ISBLK(buf.st_mode))
+            mx_printchar('b');
+        if (S_ISCHR(buf.st_mode))
+            mx_printchar('c');
+        if ((buf.st_mode & __S_IFMT) == __S_IFSOCK)
+            mx_printchar('s');
 
         mx_printchar(' ');
 

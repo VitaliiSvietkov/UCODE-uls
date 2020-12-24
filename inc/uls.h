@@ -39,7 +39,7 @@ int mx_get_max_size_len(char **files);
 
 void mx_loop_output_dirs(char **elements, int n, struct winsize max, t_options *opts);
 void mx_uls_print_table(char **files, struct winsize *max);
-void mx_uls_long_output(char **files, t_options *opts);
+void mx_uls_long_output(char **files, char *dir_path, t_options *opts);
 
 void mx_uls(char **elements, t_options *opts);
 void mx_flag_l(char* dir_name);
