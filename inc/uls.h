@@ -32,9 +32,11 @@ char *mx_get_tabs(int rows, int col, int curr, char **files);
 int mx_get_col(char **el, int n, int ws_col);
 void mx_get_flags(int argc, char **argv, t_options *opts);
 void mx_check_flag(char c, t_options *opts);
+char *mx_get_mtime(char *ntime);
 
 void mx_loop_output_dirs(char **elements, int n, struct winsize max, t_options *opts);
 void mx_uls_print_table(char **files, struct winsize *max);
+void mx_uls_long_output(char **files, t_options *opts);
 
 void mx_uls(char **elements, t_options *opts);
 void mx_flag_l(char* dir_name);

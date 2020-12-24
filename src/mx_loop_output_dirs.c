@@ -20,8 +20,8 @@ void mx_loop_output_dirs(char **elements, int n, struct winsize max, t_options *
 	    
 	    str = NULL;
 	    while ((sd = readdir(dir)) != NULL) {
-		str = mx_strjoin(str, sd->d_name);
-		str = mx_strjoin(str, " ");
+			str = mx_strjoin(str, sd->d_name);
+			str = mx_strjoin(str, " ");
 	    }
 	    
 	    char **files = NULL;
@@ -31,10 +31,14 @@ void mx_loop_output_dirs(char **elements, int n, struct winsize max, t_options *
 		if ((!opts->using_a && opts->using_A) || (!opts->using_a && !opts->using_A))
 	    	files = mx_exclude_hidden(files, opts);
 	    free(str);
-	    if (files != NULL) {	    	
+
+	    if (files != NULL) {	   
+
 			if(!opts->using_l)
 	        	mx_uls_print_table(files, &max);
-		    
+			else
+				mx_uls_long_output(files, opts);
+
 	        mx_del_strarr(&files);
 	    }
 	    closedir(dir);
