@@ -1,19 +1,5 @@
 #include "../inc/uls.h"
 
-char *mx_ls_get_acl_inf(const char *file) {
-    acl_t acl_file;
-    char *str = NULL;
-
-    if (file) {
-        acl_file = acl_get_file(file, ACL_TYPE_EXTENDED);
-        str = acl_to_text(acl_file, NULL);
-        acl_free(acl_file);
-        return str;
-    } 
-    else
-    	return NULL;
-}
-
 char *mx_get_permisions_string(struct stat *buf, char *path) {
     // For user
     char *result = mx_strnew(10);
@@ -58,9 +44,9 @@ char *mx_get_permisions_string(struct stat *buf, char *path) {
     else
         mx_strcat(result, "-");
 
-    if (mx_ls_get_xattr(path))
+    if (mx_get_xattr(path))
         mx_strcat(result, "@");
-    else if (mx_ls_get_acl_inf(path))
+    else if (mx_get_acl(path))
         mx_strcat(result, "+");
     else
         mx_strcat(result, " ");

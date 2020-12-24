@@ -38,7 +38,8 @@ void mx_check_flag(char c, t_options *opts);
 char *mx_get_mtime(char *ntime);
 int mx_get_max_size_len(char **files, int *max_links_amount_len, char *dir_path);
 char *mx_get_permisions_string(struct stat *buf, char *path);
-int mx_ls_get_xattr(char *file);
+int mx_get_xattr(char *file);
+char *mx_get_acl(const char *file);
 
 void mx_loop_output_dirs(char **elements, int n, struct winsize max, t_options *opts);
 void mx_uls_print_table(char **files, struct winsize *max);

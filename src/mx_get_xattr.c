@@ -1,6 +1,6 @@
 #include "../inc/uls.h"
 
-int mx_ls_get_xattr(char *file) {
+int mx_get_xattr(char *file) {
     char *l = mx_strnew(1024);
     int nbytes = listxattr(file, l, 1024,  XATTR_SHOWCOMPRESSION);
     ssize_t size = 0;
