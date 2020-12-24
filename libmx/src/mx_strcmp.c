@@ -6,7 +6,9 @@ int mx_strcmp(const char *s1, const char *s2) {
     for (int i = 0, j = 0; i < len1 && j < len2; i++, j++) {
         char c1 = *s1;
         char c2 = *s2;
-        if (!mx_isalpha(c1) && !mx_isdigit(c1)) {
+
+        /*Uncomment for ignoring everything non alphabetical*/
+        /*if (!mx_isalpha(c1) && !mx_isdigit(c1)) {
             s1++;
             j--;
             continue;
@@ -15,11 +17,14 @@ int mx_strcmp(const char *s1, const char *s2) {
             s2++;
             i--;
             continue;
-        }
-        if (mx_isupper(c1))
+        }*/
+
+        /*Uncomment to compare taking into account lowercase*/
+        /*if (mx_isupper(c1))
             c1 += 32;
         if (mx_isupper(c2))
-            c2 += 32;
+            c2 += 32;*/
+            
         if (c1 != c2)
             return c1 - c2;
         s1++;

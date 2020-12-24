@@ -14,15 +14,15 @@ int mx_get_col(char **el, int n, int ws_col) {
         if (mx_strlen(el[i]) < max_len) {
             sum += (max_len - mx_strlen(el[i]));
         }
-        if (mx_strlen(el[i]) >= max_len)
-            sum += 2;
+        //if (mx_strlen(el[i]) >= max_len)
+        //    sum += 2;
         if (sum >= ws_col && tmp < min) {
             min = tmp;
             tmp = 0;
             sum = 0;
             continue;
         }
-        //sum += 2;
+        sum += 2;
         tmp++;
     }
     return min;
