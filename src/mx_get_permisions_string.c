@@ -44,6 +44,7 @@ char *mx_get_permisions_string(struct stat *buf, char *path) {
     else
         mx_strcat(result, "-");
 
+    // Extended
     if (mx_get_xattr(path))
         mx_strcat(result, "@");
     else if (mx_get_acl(path))
