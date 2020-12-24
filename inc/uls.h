@@ -10,6 +10,8 @@
 #include <fcntl.h>
 #include <time.h>
 #include <dirent.h>
+#include <grp.h>
+#include <pwd.h>
 #include "../libmx/inc/libmx.h"
 
 extern int errno;
@@ -33,6 +35,7 @@ int mx_get_col(char **el, int n, int ws_col);
 void mx_get_flags(int argc, char **argv, t_options *opts);
 void mx_check_flag(char c, t_options *opts);
 char *mx_get_mtime(char *ntime);
+int mx_get_max_size_len(char **files);
 
 void mx_loop_output_dirs(char **elements, int n, struct winsize max, t_options *opts);
 void mx_uls_print_table(char **files, struct winsize *max);

@@ -14,8 +14,8 @@ void mx_loop_output_dirs(char **elements, int n, struct winsize max, t_options *
 	        dir = opendir(elements[i]);
 	    
 	    if (dir == NULL) {
-		mx_printerr("uls"); //change for errno with perror
-		exit(1);
+			mx_printerr("uls"); //change for errno with perror
+			exit(1);
 	    }
 	    
 	    str = NULL;
