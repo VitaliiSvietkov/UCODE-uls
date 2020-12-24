@@ -14,7 +14,6 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
     for (int i = 0; i < len; ++i) {
         char *path = mx_strjoin(dir_path, files[i]);
         stat(path, &buf);
-        free(path);
 
         if (S_ISDIR(buf.st_mode))
             mx_printchar('d');
@@ -31,7 +30,8 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
         if ((buf.st_mode & S_IFMT) == S_IFSOCK)
             mx_printchar('s');
 
-        char *permissions = mx_get_permisions_string(&buf);
+        char *permissions = mx_get_permisions_string(&buf, path);
+        free(path);
         mx_printstr(permissions);
         free(permissions);
         mx_printchar(' ');
