@@ -13,9 +13,16 @@ void mx_uls_long_output(char **files, t_options *opts) {
     for (int i = 0; i < len; ++i) {
         stat(files[i], &buf);
 
+        if (S_ISDIR(buf.st_mode))
+            mx_printchar('d');
+        else
+            mx_printchar('-');
+
+        mx_printchar(' ');
+
         mx_printint(buf.st_nlink);
         mx_printchar(' ');
-        
+
         struct passwd *ubuf = getpwuid(buf.st_uid);
         if (ubuf == NULL) {
             char *mx_err = "uls: ";
