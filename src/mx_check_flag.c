@@ -3,17 +3,38 @@
 void mx_check_flag(char c, t_options *opts) {
     switch (c) {
         case 'a':
-            if (opts->using_A)
-                opts->using_A = false;
+            opts->using_A = false;
             opts->using_a = true;
             break;
         case 'A':
-            if (opts->using_a)
-                opts->using_a = false;
+            opts->using_a = false;
             opts->using_A = true;
+            break;
+        case 'G':
+            opts->using_G = true;
             break;
         case 'l':
             opts->using_l = true;
+            break;
+        case 's':
+            opts->using_s = true;
+            break;
+        case 'p':
+            opts->using_p = true;
+            break;
+        case 'r':
+            opts->using_r = true;
+            break;
+        case 't':
+            opts->using_t = true;
+        case 'U':
+            opts->using_U = true;
+            opts->using_l = false;
+            opts->using_s = false;
+            //disable color
+            break;
+        case '1':
+            opts->using_1 = true;
             break;
         default:
                 mx_printerr("uls: illegal option -- ");

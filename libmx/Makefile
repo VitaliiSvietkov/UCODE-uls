@@ -7,16 +7,16 @@ all: libmx
 
 libmx:
 	@clang -c ${HDRS} ${SRCS}
-	@mkdir ../obj
-	@mv *.o ../obj
-	@ar -rc ../libmx.a ../obj/*.o
-	@ranlib ../libmx.a
+	@mkdir obj
+	@mv *.o obj
+	@ar -rc libmx.a obj/*.o
+	@ranlib libmx.a
 
 uninstall: clean
-	@rm -f ../libmx.a
+	@rm -f libmx.a
 
 clean:
-	@rm -f ../inc/*.gch
-	@rm -rdf ../obj
+	@rm -f inc/*.gch
+	@rm -rdf obj
 
 reinstall: uninstall libmx

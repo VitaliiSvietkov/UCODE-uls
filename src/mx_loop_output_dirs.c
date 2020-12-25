@@ -26,7 +26,8 @@ void mx_loop_output_dirs(char **elements, int n, struct winsize max, t_options *
 	    
 	    char **files = NULL;
 	    files = mx_strsplit(str, ' ');
-		mx_sort_strarr(files);
+		if (!opts->using_U)
+			mx_sort_strarr(files);
 
 		if ((!opts->using_a && opts->using_A) || (!opts->using_a && !opts->using_A))
 	    	files = mx_exclude_hidden(files, opts);
@@ -34,7 +35,7 @@ void mx_loop_output_dirs(char **elements, int n, struct winsize max, t_options *
 
 	    if (files != NULL) {
 			if(!opts->using_l)
-	        	mx_uls_print_table(files, &max);
+	        	mx_uls_print_table(files, &max, mx_strjoin(elements[i], "/"), opts);
 			else
 				mx_uls_long_output(files, mx_strjoin(elements[i], "/"), opts);
 

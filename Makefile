@@ -1,20 +1,23 @@
 .PHONY: all uls uninstall clean reinstall
 
-SRCS := $(wildcard src/*.c)
+SRCS := $(wildcard src/*.c src/sorting/*.c)
 HDRS := $(wildcard inc/*.h)
+
+CCFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic
 
 all: uls
 
 uls:
-	@make -C libmx/
-	@clang -std=c11 -Wall -Wextra -Werror -Wpedantic ${SRCS} ${HDRS} libmx.a
+	@$(MAKE) -C libmx/
+	@clang ${CCFLAGS} ${SRCS} ${HDRS} libmx/libmx.a
 	@mv a.out uls
 
 uninstall: clean
-	@make -C libmx/ uninstall
+	@$(MAKE) -C libmx/ uninstall
+	@rm -rdf uls
 
 clean:
-	@make -C libmx/ clean
-	@rm -rdf uls
+	@$(MAKE) -C libmx/ clean
+	@rm -rdf inc/*.gch
 
 reinstall: uninstall uls

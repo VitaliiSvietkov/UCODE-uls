@@ -7,7 +7,7 @@ int main(int argc, char *argv[]) {
     mx_get_flags(argc, argv, opts);
     char **elements = mx_get_elements(argc, argv);
     
-    if (elements != NULL)
+    if (elements != NULL && !opts->using_U)
         mx_sort_strarr(elements);
 
     mx_uls(elements, opts);

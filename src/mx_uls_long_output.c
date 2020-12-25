@@ -15,6 +15,7 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
         char *path = mx_strjoin(dir_path, files[i]);
         lstat(path, &buf);
 
+        // Type of a file
         if (S_ISDIR(buf.st_mode))
             mx_printchar('d');
         if (S_ISREG(buf.st_mode))
@@ -30,17 +31,19 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
         if ((buf.st_mode & S_IFMT) == S_IFSOCK)
             mx_printchar('s');
 
+        // Permisions
         char *permissions = mx_get_permisions_string(&buf, path);
         mx_printstr(permissions);
         free(permissions);
         mx_printchar(' ');
 
-
+        // Number of hard links
         for (int k = mx_strlen(mx_itoa(buf.st_nlink)); k < links_amount_max_len; ++k)
             mx_printchar(' ');
         mx_printint(buf.st_nlink);
         mx_printchar(' ');
 
+        // User name
         struct passwd *ubuf = getpwuid(buf.st_uid);
         if (ubuf == NULL) {
             char *mx_err = "uls";
@@ -51,16 +54,20 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
         mx_printstr(ubuf->pw_name);
         mx_printstr("  ");
 
-        struct group *gbuf = getgrgid(buf.st_gid);
-        if (gbuf == NULL) {
-            char *mx_err = "uls";
-            perror(mx_err);
-            free(dir_path);
-            exit(1);
+        // Group name
+        if (!opts->using_G) {
+            struct group *gbuf = getgrgid(buf.st_gid);
+            if (gbuf == NULL) {
+                char *mx_err = "uls";
+                perror(mx_err);
+                free(dir_path);
+                exit(1);
+            }
+            mx_printstr(gbuf->gr_name);
+            mx_printstr("  ");
         }
-        mx_printstr(gbuf->gr_name);
-        mx_printstr("  ");
-
+        
+        // Size of an element
         for (int k = mx_strlen(mx_itoa(buf.st_size)); k < max_size_len; ++k)
             mx_printchar(' ');
         mx_printint(buf.st_size);
@@ -72,8 +79,12 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
         free(mtime);
         mx_printchar(' ');
 
+        // Name of an element
         mx_printstr(files[i]);
+        if (S_ISDIR(buf.st_mode) && opts->using_p)
+            mx_printchar('/');
         
+        // If link - show the pointed element
         if (S_ISLNK(buf.st_mode)) {
             char link_buf[1024];
             ssize_t len;

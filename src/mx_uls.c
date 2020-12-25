@@ -20,7 +20,7 @@ void mx_uls(char **elements, t_options *opts) {
     
     if (files != NULL) {
         if (!opts->using_l)
-            mx_uls_print_table(files, &max);
+            mx_uls_print_table(files, &max, mx_strjoin(".", "/"), opts);
         if (directories != NULL)
             mx_printchar('\n');
         mx_del_strarr(&files);

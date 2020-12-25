@@ -1,12 +1,14 @@
 #include "../inc/uls.h"
 
-void mx_uls_print_table(char **files, struct winsize *max) {
+void mx_uls_print_table(char **files, struct winsize *max, char *dir_path, t_options *opts) {
 	int istty = isatty(fileno(stdout));
 	
-	if (!istty) {
+	if (!istty || opts->using_1) {
 		mx_print_strarr(files, "\n");
 		return;
 	}
+	struct stat buf;
+
     int len = 0; //number of elements in "files"
     for (; files[len] != NULL; len++);
     int col = mx_get_col(files, len, max->ws_col);
@@ -27,7 +29,16 @@ void mx_uls_print_table(char **files, struct winsize *max) {
 	for (int j = 0; j < col; j++) {
 	    if (reached_end && j == col - 1)
 	        break;
+
+        char *path = mx_strjoin(dir_path, files[k]);
+		lstat(path, &buf);
+		free(path);
+		
+		// Print name of an element
 	    mx_printstr(files[k]);
+		if (S_ISDIR(buf.st_mode) && opts->using_p)
+			mx_printchar('/');
+
 	    if (files[k + 1] == NULL) {
 	        reached_end = true;
 	        break;
@@ -46,5 +57,7 @@ void mx_uls_print_table(char **files, struct winsize *max) {
 	}
 	mx_printchar('\n');
     }
+
+	free(dir_path);
 }
 
