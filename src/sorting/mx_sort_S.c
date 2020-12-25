@@ -1,6 +1,6 @@
 #include "../../inc/uls.h"
 
-void mx_sort_t(char **arr, char *dir_path, t_options *opts) {
+void mx_sort_S(char **arr, char *dir_path, t_options *opts) {
     int len = 0;
     for (; arr[len] != NULL; len++);
     
@@ -17,13 +17,13 @@ void mx_sort_t(char **arr, char *dir_path, t_options *opts) {
             lstat(path2, &buf2);
             free(path2);
             if (opts->using_r)
-                if (time(buf1.st_mtime) > time(buf2.st_mtime)) {
+                if (time(buf1.st_size) < time(buf2.st_size)) {
                     temp = arr[i];
                     arr[i] = arr[j];
                     arr[j] = temp;
                 }
             else
-                if (time(buf1.st_mtime) < time(buf2.st_mtime)) {
+                if (time(buf1.st_size) > time(buf2.st_size)) {
                     temp = arr[i];
                     arr[i] = arr[j];
                     arr[j] = temp;
