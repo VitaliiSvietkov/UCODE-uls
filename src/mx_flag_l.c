@@ -23,7 +23,7 @@ void mx_flag_l(char* dir_name) {
     char **files = NULL;
     files = mx_strsplit(str, ' ');
     files = mx_exclude_hidden(files, NULL);
-    mx_sort_strarr(files);
+    //mx_sort_strarr(files);
     free(str);
     
     int len = 0; //number of elements in "files"

@@ -7,8 +7,14 @@ int main(int argc, char *argv[]) {
     mx_get_flags(argc, argv, opts);
     char **elements = mx_get_elements(argc, argv);
     
-    if (elements != NULL && !opts->using_U)
-        mx_sort_strarr(elements);
+    if (elements != NULL) {
+        mx_sort_strarr(elements, opts);
+        
+        if (opts->using_t)
+            mx_sort_t(elements, mx_strjoin(".", "/"), opts);
+        else if (opts->using_S)
+            mx_sort_S(elements, mx_strjoin(".", "/"), opts);
+    }
 
     mx_uls(elements, opts);
     

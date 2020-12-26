@@ -11,6 +11,16 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
     int links_amount_max_len = 0;
     int max_size_len = mx_get_max_size_len(files, &links_amount_max_len, dir_path);
 
+    int total = 0;
+    for (int i = 0; i < len; ++i) {
+        char *path = mx_strjoin(dir_path, files[i]);
+        stat(path, &buf);
+        total += buf.st_blocks;
+    }
+    mx_printstr("total ");
+    mx_printint(total);
+    mx_printchar('\n');
+
     for (int i = 0; i < len; ++i) {
         char *path = mx_strjoin(dir_path, files[i]);
         lstat(path, &buf);
