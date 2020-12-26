@@ -12,10 +12,17 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
     int max_size_len = mx_get_max_size_len(files, &links_amount_max_len, dir_path);
 
     int total = 0;
+    int max_block_size_len = 1;
     for (int i = 0; i < len; ++i) {
         char *path = mx_strjoin(dir_path, files[i]);
         stat(path, &buf);
         total += buf.st_blocks;
+        if (opts->using_s) {
+            char *new_block_size = mx_itoa(buf.st_blocks);
+            if (max_block_size_len < mx_strlen(new_block_size))
+                max_block_size_len = mx_strlen(new_block_size);
+            free(new_block_size);
+        }
     }
     mx_printstr("total ");
     mx_printint(total);
@@ -24,6 +31,16 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
     for (int i = 0; i < len; ++i) {
         char *path = mx_strjoin(dir_path, files[i]);
         lstat(path, &buf);
+
+        if (opts->using_s) {
+            char *block_size = mx_itoa(buf.st_blocks);
+            int block_size_int = mx_strlen(block_size);
+            free(block_size);
+            for (int k = 0; k < max_block_size_len - block_size_int; k++)
+                mx_printchar(' ');
+            mx_printint(buf.st_blocks);
+            mx_printchar(' ');
+        }
 
         // Type of a file
         if (S_ISDIR(buf.st_mode))

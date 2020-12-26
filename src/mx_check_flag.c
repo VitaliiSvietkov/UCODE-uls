@@ -16,9 +16,9 @@ void mx_check_flag(char c, t_options *opts) {
         case 'l':
             opts->using_l = true;
             break;
-        /*case 's':
+        case 's':
             opts->using_s = true;
-            break;*/
+            break;
         case 'p':
             opts->using_p = true;
             break;
