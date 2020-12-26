@@ -10,9 +10,9 @@ void mx_check_flag(char c, t_options *opts) {
             opts->using_a = false;
             opts->using_A = true;
             break;
-        /*case 'G':
+        case 'G':
             opts->using_G = true;
-            break;*/
+            break;
         case 'l':
             opts->using_l = true;
             break;

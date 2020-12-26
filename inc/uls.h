@@ -17,6 +17,15 @@
 
 extern int errno;
 
+// Colors
+#define KNRM  "\x1B[0m"
+#define KRED  "\x1B[31m"
+#define KGRN  "\x1B[32m"
+#define KBRN  "\x1B[33m"
+#define KBLU  "\x1B[34m"
+#define KMAG  "\x1B[35m"
+#define KCYN  "\x1B[36m"
+
 typedef struct s_options
 {
     bool using_a;
@@ -48,6 +57,7 @@ int mx_get_max_size_len(char **files, int *max_links_amount_len, char *dir_path)
 char *mx_get_permisions_string(struct stat *buf, char *path);
 int mx_get_xattr(char *file);
 char *mx_get_acl(const char *file);
+void mx_set_color(struct stat *buf);
 
 void mx_loop_output_dirs(char **elements, int n, struct winsize max, t_options *opts);
 void mx_uls_print_table(char **files, struct winsize *max, char *dir_path, t_options *opts);

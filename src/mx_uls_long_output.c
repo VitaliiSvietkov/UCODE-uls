@@ -82,17 +82,15 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
         mx_printstr("  ");
 
         // Group name
-        if (!opts->using_G) {
-            struct group *gbuf = getgrgid(buf.st_gid);
-            if (gbuf == NULL) {
-                char *mx_err = "uls";
-                perror(mx_err);
-                free(dir_path);
-                exit(1);
-            }
-            mx_printstr(gbuf->gr_name);
-            mx_printstr("  ");
+        struct group *gbuf = getgrgid(buf.st_gid);
+        if (gbuf == NULL) {
+            char *mx_err = "uls";
+            perror(mx_err);
+            free(dir_path);
+            exit(1);
         }
+        mx_printstr(gbuf->gr_name);
+        mx_printstr("  ");
         
         // Size of an element
         for (int k = mx_strlen(mx_itoa(buf.st_size)); k < max_size_len; ++k)
@@ -107,9 +105,11 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
         mx_printchar(' ');
 
         // Name of an element
+        mx_set_color(&buf);
         mx_printstr(files[i]);
         if (S_ISDIR(buf.st_mode) && opts->using_p)
             mx_printchar('/');
+        mx_printstr(KNRM);
         
         // If link - show the pointed element
         if (S_ISLNK(buf.st_mode)) {

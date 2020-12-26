@@ -9,7 +9,10 @@ all: uls
 
 uls:
 	@$(MAKE) -C libmx/
-	@clang ${CCFLAGS} ${SRCS} ${HDRS} libmx/libmx.a
+	@clang -c ${CCFLAGS} ${SRCS} ${HDRS}
+	@mkdir obj
+	@mv *.o obj
+	@clang obj/*.o libmx/libmx.a
 	@mv a.out uls
 
 uninstall: clean
@@ -19,5 +22,6 @@ uninstall: clean
 clean:
 	@$(MAKE) -C libmx/ clean
 	@rm -rdf inc/*.gch
+	@rm -rdf obj
 
 reinstall: uninstall uls
