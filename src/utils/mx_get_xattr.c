@@ -1,4 +1,4 @@
-#include "../inc/uls.h"
+#include "../../inc/uls.h"
 
 int mx_get_xattr(char *file) {
     char *l = mx_strnew(1024);

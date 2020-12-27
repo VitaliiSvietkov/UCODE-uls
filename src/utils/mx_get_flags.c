@@ -1,4 +1,4 @@
-#include "../inc/uls.h"
+#include "../../inc/uls.h"
 
 void mx_get_flags(int argc, char **argv, t_options *opts) {
     int j = 0;

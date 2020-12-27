@@ -1,4 +1,4 @@
-#include "../inc/uls.h"
+#include "../../inc/uls.h"
 
 int mx_get_col(char **el, int n, int ws_col) {
     int max_len = 0;

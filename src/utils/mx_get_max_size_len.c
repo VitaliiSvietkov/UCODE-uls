@@ -1,4 +1,4 @@
-#include "../inc/uls.h"
+#include "../../inc/uls.h"
 
 int mx_get_max_size_len(char **files, int *links_max_amount_len, char *dir_path) {
     struct stat buf;

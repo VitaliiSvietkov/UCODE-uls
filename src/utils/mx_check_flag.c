@@ -1,4 +1,4 @@
-#include "../inc/uls.h"
+#include "../../inc/uls.h"
 
 void mx_check_flag(char c, t_options *opts) {
     switch (c) {

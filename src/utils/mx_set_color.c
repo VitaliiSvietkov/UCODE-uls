@@ -1,4 +1,4 @@
-#include "../inc/uls.h"
+#include "../../inc/uls.h"
 
 void mx_set_color(struct stat *buf) {
     if (S_ISDIR(buf->st_mode))

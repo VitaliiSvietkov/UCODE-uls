@@ -59,10 +59,6 @@ int mx_get_xattr(char *file);
 char *mx_get_acl(const char *file);
 void mx_set_color(struct stat *buf);
 
-void mx_loop_output_dirs(char **elements, int n, struct winsize max, t_options *opts);
-void mx_uls_print_table(char **files, struct winsize *max, char *dir_path, t_options *opts);
-void mx_uls_long_output(char **files, char *dir_path, t_options *opts);
-
 // Sorting
 void mx_sort_strarr(char **arr, t_options *opts);
 void mx_sort_t(char **arr, char *dir_path, t_options *opts);
@@ -70,3 +66,6 @@ void mx_sort_S(char **arr, char *dir_path, t_options *opts);
 
 void mx_uls(char **elements, t_options *opts);
 void mx_flag_l(char* dir_name);
+void mx_loop_output_dirs(char **elements, int n, struct winsize max, t_options *opts);
+void mx_uls_print_table(char **files, struct winsize *max, char *dir_path, t_options *opts);
+void mx_uls_long_output(char **files, char *dir_path, t_options *opts);

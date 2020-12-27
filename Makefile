@@ -1,6 +1,6 @@
 .PHONY: all uls uninstall clean reinstall
 
-SRCS := $(wildcard src/*.c src/sorting/*.c)
+SRCS := $(wildcard src/*.c src/sorting/*.c src/utils/*.c)
 HDRS := $(wildcard inc/*.h)
 
 CCFLAGS = -Wall -Wextra -Werror -Wpedantic

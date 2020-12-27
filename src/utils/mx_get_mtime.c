@@ -1,4 +1,4 @@
-#include "../inc/uls.h"
+#include "../../inc/uls.h"
 
 char *mx_get_mtime(char *ntime) {
     char *res = mx_strnew(12);

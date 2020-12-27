@@ -1,4 +1,4 @@
-#include "../inc/uls.h"
+#include "../../inc/uls.h"
 
 char *mx_get_tabs(int rows, int col, int curr, char **files) {
     int max_len = mx_strlen(files[col]);

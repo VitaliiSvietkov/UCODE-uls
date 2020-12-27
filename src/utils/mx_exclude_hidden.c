@@ -1,4 +1,4 @@
-#include "../inc/uls.h"
+#include "../../inc/uls.h"
 
 char **mx_exclude_hidden(char **arr, t_options *opts) {
     char **res = NULL;

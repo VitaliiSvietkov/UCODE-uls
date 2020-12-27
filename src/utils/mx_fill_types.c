@@ -1,4 +1,4 @@
-#include "../inc/uls.h"
+#include "../../inc/uls.h"
 
 void mx_fill_types(char **elements, int n, char ***directories, char ***files) {
     //DIR *dir = NULL;

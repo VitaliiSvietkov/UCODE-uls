@@ -1,4 +1,4 @@
-#include "../inc/uls.h"
+#include "../../inc/uls.h"
 
 char *mx_get_permisions_string(struct stat *buf, char *path) {
     // For user
