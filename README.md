@@ -75,7 +75,7 @@ usage: uls [-aAfGlsSpU1rt] [file ...]
 ## Author
 <p align="center">
     <a href="https://github.com/VitaliiSvietkov" target="_blank">
-        <img src="https://avatars3.githubusercontent.com/u/61375757?s=460&u=0bbb6bba911c39806ee1e3de6a3b34f093279545&v=4" height="100px" border-radius="20px">
+        <img src="https://avatars3.githubusercontent.com/u/61375757?s=460&u=0bbb6bba911c39806ee1e3de6a3b34f093279545&v=4" height="100px" style="border-radius: 20px;">
     </a>
 </p>
 <p align="center">
