@@ -8,9 +8,11 @@
 2. Move to the root directory
 3. Run `make` command
 
-<p>To delete the program run 'make uninstall' command</p>
-<br>To delete all 'obj' files - 'make clean'</br>
-<br>To reinstall the program - 'make reinstall'</br>
+<p>
+To delete the program run 'make uninstall' command</br>
+To delete all 'obj' files - 'make clean'</br>
+To reinstall the program - 'make reinstall'</br>
+</p>
 
 ## Running the program
 
