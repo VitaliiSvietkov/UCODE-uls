@@ -8,6 +8,10 @@
 2. Move to the root directory
 3. Run `make` command
 
+To delete the program run 'make uninstall' command
+To delete all 'obj' files - 'make clean'
+To reinstall the program - 'make reinstall'
+
 ## Running the program
 
 Call `./uls` from the root directory of the source code after building it.
