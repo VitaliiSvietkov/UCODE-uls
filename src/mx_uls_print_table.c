@@ -63,12 +63,7 @@ void mx_uls_print_table(char **files, struct winsize *max, char *dir_path, t_opt
 				mx_printint(buf.st_blocks);
 				mx_printchar(' ');
 			}
-			if (opts->using_G)
-				mx_set_color(&buf);
-			mx_printstr(files[k]);
-			mx_printstr(KNRM);
-			if (S_ISDIR(buf.st_mode) && opts->using_p)
-				mx_printchar('/');
+			mx_print_name(files[k], &buf, opts);
 
 			if (files[k + 1] == NULL) {
 				reached_end = true;

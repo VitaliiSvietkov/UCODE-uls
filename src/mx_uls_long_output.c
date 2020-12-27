@@ -32,6 +32,7 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
         char *path = mx_strjoin(dir_path, files[i]);
         lstat(path, &buf);
 
+        // Number of blocks (only with '-s')
         if (opts->using_s) {
             char *block_size = mx_itoa(buf.st_blocks);
             int block_size_int = mx_strlen(block_size);
@@ -98,6 +99,7 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
         mx_printint(buf.st_size);
         mx_printchar(' ');
 
+        // Date of last file change/modification etc.
         mx_strcpy(ntime, ctime(&buf.st_mtime));
         char *mtime = mx_get_mtime(ntime);
         mx_printstr(mtime);
@@ -105,11 +107,7 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
         mx_printchar(' ');
 
         // Name of an element
-        mx_set_color(&buf);
-        mx_printstr(files[i]);
-        if (S_ISDIR(buf.st_mode) && opts->using_p)
-            mx_printchar('/');
-        mx_printstr(KNRM);
+        mx_print_name(files[i], &buf, opts);
         
         // If link - show the pointed element
         if (S_ISLNK(buf.st_mode)) {
@@ -119,6 +117,7 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
                 link_buf[len] = '\0';
                 mx_printstr(" -> ");
                 mx_printstr(link_buf);
+                //should we do like in the above for -F????
             }
         }
         mx_printchar('\n');

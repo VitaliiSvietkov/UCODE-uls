@@ -27,18 +27,21 @@ void mx_loop_output_dirs(char **elements, int n, struct winsize max, t_options *
 	    char **files = NULL;
 	    files = mx_strsplit(str, ' ');
 
-		mx_sort_strarr(files, opts);
+		if (!opts->using_f)
+			mx_sort_strarr(files, opts);
 		if ((!opts->using_a && opts->using_A) || (!opts->using_a && !opts->using_A))
 	    	files = mx_exclude_hidden(files, opts);
 	    free(str);
 		
-		if (opts->using_t)
-			mx_sort_t(files, mx_strjoin(elements[i], "/"), opts);
-		else if (opts->using_S)
-			mx_sort_S(files, mx_strjoin(elements[i], "/"), opts);
+		if (!opts->using_f) {
+			if (opts->using_t)
+				mx_sort_t(files, mx_strjoin(elements[i], "/"), opts);
+			else if (opts->using_S)
+				mx_sort_S(files, mx_strjoin(elements[i], "/"), opts);
+		}
 
 	    if (files != NULL) {
-			if(!opts->using_l)
+			if(opts->using_C)
 	        	mx_uls_print_table(files, &max, mx_strjoin(elements[i], "/"), opts);
 			else
 				mx_uls_long_output(files, mx_strjoin(elements[i], "/"), opts);

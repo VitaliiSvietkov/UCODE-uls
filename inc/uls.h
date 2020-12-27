@@ -28,18 +28,19 @@ extern int errno;
 
 typedef struct s_options
 {
-    bool using_a;
+    bool using_1;
     bool using_A;
+    bool using_a;
+    bool using_C;
+    bool using_F;
+    bool using_f;
     bool using_G;
     bool using_l;
-    bool using_s;
     bool using_p;
     bool using_r;
-    bool using_t;
     bool using_S;
-    bool using_U;
-
-    bool using_1;
+    bool using_s;
+    bool using_t;
 }              t_options;
 
 void mx_uls_usage(void);
@@ -63,6 +64,9 @@ void mx_set_color(struct stat *buf);
 void mx_sort_strarr(char **arr, t_options *opts);
 void mx_sort_t(char **arr, char *dir_path, t_options *opts);
 void mx_sort_S(char **arr, char *dir_path, t_options *opts);
+
+// Output
+void mx_print_name(char *name, struct stat *buf, t_options *opts);
 
 void mx_uls(char **elements, t_options *opts);
 void mx_flag_l(char* dir_name);

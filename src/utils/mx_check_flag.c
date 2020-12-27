@@ -2,22 +2,38 @@
 
 void mx_check_flag(char c, t_options *opts) {
     switch (c) {
-        case 'a':
-            opts->using_A = false;
-            opts->using_a = true;
+        case '1':
+            opts->using_1 = true;
+            opts->using_l = false;
+            opts->using_C = false;
             break;
         case 'A':
             opts->using_a = false;
             opts->using_A = true;
+            break;
+        case 'a':
+            opts->using_A = false;
+            opts->using_a = true;
+            break;
+        case 'C':
+            opts->using_C = true;
+            opts->using_1 = false;
+            opts->using_l = false;
+            break;
+        case 'F':
+            opts->using_F = true;
+            break;
+        case 'f':
+            opts->using_f = true;
+            opts->using_a = true;
             break;
         case 'G':
             opts->using_G = true;
             break;
         case 'l':
             opts->using_l = true;
-            break;
-        case 's':
-            opts->using_s = true;
+            opts->using_1 = false;
+            opts->using_C = false;
             break;
         case 'p':
             opts->using_p = true;
@@ -25,13 +41,16 @@ void mx_check_flag(char c, t_options *opts) {
         case 'r':
             opts->using_r = true;
             break;
-        case 't':
-            opts->using_t = true;
-            opts->using_S = false;
-            break;
         case 'S':
             opts->using_S = true;
             opts->using_t = false;
+            break;
+        case 's':
+            opts->using_s = true;
+            break;
+        case 't':
+            opts->using_t = true;
+            opts->using_S = false;
             break;
         /*case 'U':
             opts->using_U = true;
@@ -39,9 +58,6 @@ void mx_check_flag(char c, t_options *opts) {
             opts->using_s = false;
             //disable color
             break;*/
-        case '1':
-            opts->using_1 = true;
-            break;
         default:
                 mx_printerr("uls: illegal option -- ");
                 write(2, &c, 1);

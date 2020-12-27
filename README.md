@@ -14,7 +14,7 @@ Call `./uls` from the root directory of the source code after building it.
 
 ## Supported flags
 ```
-usage: uls [-aAfGlsSpU1rt] [file ...]
+usage: uls [-1AaCfGlprSst] [file ...]
 ```
 
 ## --help
@@ -33,6 +33,15 @@ usage: uls [-aAfGlsSpU1rt] [file ...]
              user.
 
      -a      Include directory entries whose names begin with a dot (.).
+
+     -C      Force multi-column output; this is the default when output is to
+             a terminal.
+             
+     -F      Display a slash (`/') immediately after each pathname that is a
+             directory, an asterisk (`*') after each that is executable, an at
+             sign (`@') after each symbolic link, an equals sign (`=') after
+             each socket, a percent sign (`%') after each whiteout, and a ver-
+             tical bar (`|') after each that is a FIFO.
 
      -f      Output is not sorted.  This option turns on the -a option.
 
@@ -62,20 +71,26 @@ usage: uls [-aAfGlsSpU1rt] [file ...]
      -t      Sort by time modified (most recently modified first) before sort-
              ing the operands by lexicographical order.
 
-     -u      Use time of last access, instead of last modification of the file
-             for sorting (-t) or long printing (-l).
-
-     -U      Use time of file creation, instead of last modification for sort-
-             ing (-t) or long output (-l).
-
      The -1, -C, -x, and -l options all override each other; the last one
      specified determines the format used.
+
+     The -c and -u options override each other; the last one specified deter-
+     mines the file time used.
+
+     The -B, -b, -w, and -q options all override each other; the last one
+     specified determines the format used for non-printable characters.
+
+     The -H, -L and -P options all override each other (either partially or
+     fully); they are applied in the order specified.
+
+     By default, ls lists one entry per line to standard output; the excep-
+     tions are to terminals or when the -C or -x options are specified.
 ```
 
 ## Author
 <p align="center">
     <a href="https://github.com/VitaliiSvietkov" target="_blank">
-        <img src="https://avatars3.githubusercontent.com/u/61375757?s=460&u=0bbb6bba911c39806ee1e3de6a3b34f093279545&v=4" height="100px" style="border-radius: 20px;">
+        <img src="https://avatars3.githubusercontent.com/u/61375757?s=460&u=0bbb6bba911c39806ee1e3de6a3b34f093279545&v=4" height="100px">
     </a>
 </p>
 <p align="center">
