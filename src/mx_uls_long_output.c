@@ -101,9 +101,13 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
 
         // Date of last file change/modification etc.
         mx_strcpy(ntime, ctime(&buf.st_mtime));
-        char *mtime = mx_get_mtime(ntime);
-        mx_printstr(mtime);
-        free(mtime);
+        if (!opts->using_T) {
+            char *mtime = mx_get_mtime(ntime);
+            mx_printstr(mtime);
+            free(mtime);
+        }
+        else
+            mx_printstr(ntime);
         mx_printchar(' ');
 
         // Name of an element

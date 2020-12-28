@@ -36,10 +36,12 @@ typedef struct s_options
     bool using_f;
     bool using_G;
     bool using_l;
+    bool using_m;
     bool using_p;
     bool using_r;
     bool using_S;
     bool using_s;
+    bool using_T;
     bool using_t;
 }              t_options;
 
@@ -67,6 +69,7 @@ void mx_sort_S(char **arr, char *dir_path, t_options *opts);
 
 // Output
 void mx_print_name(char *name, struct stat *buf, t_options *opts);
+void mx_print_m(char **elements, struct winsize *max, char *dir_path, t_options *opts);
 
 void mx_uls(char **elements, t_options *opts);
 void mx_flag_l(char* dir_name);

@@ -35,6 +35,9 @@ void mx_check_flag(char c, t_options *opts) {
             opts->using_1 = false;
             opts->using_C = false;
             break;
+        case 'm':
+            opts->using_m = true;
+            break;
         case 'p':
             opts->using_p = true;
             break;
@@ -47,6 +50,9 @@ void mx_check_flag(char c, t_options *opts) {
             break;
         case 's':
             opts->using_s = true;
+            break;
+        case 'T':
+            opts->using_T = true;
             break;
         case 't':
             opts->using_t = true;

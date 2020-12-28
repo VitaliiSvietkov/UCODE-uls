@@ -1,5 +1,19 @@
 #include "../../inc/uls.h"
 
-void mx_print_m(char **elements, t_options *opts) {
-
+void mx_print_m(char **elements, struct winsize *max, char *dir_path, t_options *opts) {
+    int cur_len = 0;
+    struct stat buf;
+    for (int i = 0; elements[i] != NULL; ++i) {
+        if (cur_len + mx_strlen(elements[i]) >= max->ws_col - 1) {
+            mx_printchar('\n');
+            cur_len = 0;
+        }
+        char *path = mx_strjoin(dir_path, elements[i]);
+        lstat(path, &buf);
+        free(path);
+        mx_print_name(elements[i], &buf, opts);
+        cur_len += (mx_strlen(elements[i]) + 2);
+        mx_printstr(", ");
+    }
+    free(dir_path);
 }

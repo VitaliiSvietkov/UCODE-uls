@@ -20,7 +20,7 @@ Call `./uls` from the root directory of the source code after building it.
 
 ## Supported flags
 ```
-usage: uls [-1AaCfGlprSst] [file ...]
+usage: uls [-1AaCfGlmprSsTt] [file ...]
 ```
 
 ## --help
@@ -58,6 +58,9 @@ usage: uls [-1AaCfGlprSst] [file ...]
              below.)  If the output is to a terminal, a total sum for all the
              file sizes is output on a line before the long listing.
 
+     -m      Stream output format; list files across the page, separated by
+             commas.
+
      -p      Write a slash (`/') after each filename if that file is a direc-
              tory.
 
@@ -73,6 +76,10 @@ usage: uls [-1AaCfGlprSst] [file ...]
              total sum for all the file sizes is output on a line before the
              listing.  The environment variable BLOCKSIZE overrides the unit
              size of 512 bytes.
+
+     -T      When used with the -l (lowercase letter ``ell'') option, display
+             complete time information for the file, including month, day,
+             hour, minute, second, and year.
 
      -t      Sort by time modified (most recently modified first) before sort-
              ing the operands by lexicographical order.
@@ -92,13 +99,3 @@ usage: uls [-1AaCfGlprSst] [file ...]
      By default, ls lists one entry per line to standard output; the excep-
      tions are to terminals or when the -C or -x options are specified.
 ```
-
-## Author
-<p align="center">
-    <a href="https://github.com/VitaliiSvietkov" target="_blank">
-        <img src="https://avatars3.githubusercontent.com/u/61375757?s=460&u=0bbb6bba911c39806ee1e3de6a3b34f093279545&v=4" height="100px">
-    </a>
-</p>
-<p align="center">
-<a href="https://github.com/VitaliiSvietkov" target="_blank">Vitalii Svietkov</a>
-</p>
