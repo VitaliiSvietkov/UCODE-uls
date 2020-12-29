@@ -5,13 +5,13 @@ void mx_loop_output_dirs(char **elements, int n, struct winsize max, t_options *
     struct dirent *sd = NULL;
     char *str;
     for (int i = 0; elements[i] != NULL; i++) {
-            if (n > 1) {
-                mx_printstr(elements[i]);
-                mx_printstr(":\n");
-                dir = opendir(elements[i]);
-            }
-            else
-	        dir = opendir(elements[i]);
+        if (n > 1) {
+            mx_printstr(elements[i]);
+            mx_printstr(":\n");
+            dir = opendir(elements[i]);
+        }
+        else
+	    	dir = opendir(elements[i]);
 	    
 	    if (dir == NULL) {
 			mx_printerr("uls"); //change for errno with perror
@@ -43,7 +43,7 @@ void mx_loop_output_dirs(char **elements, int n, struct winsize max, t_options *
 	    if (files != NULL) {
 			if (opts->using_m)
 				mx_print_m(files, &max, mx_strjoin(elements[i], "/"), opts);
-			else if(opts->using_C)
+			else if(opts->using_C || opts->using_x)
 	        	mx_uls_print_table(files, &max, mx_strjoin(elements[i], "/"), opts);
 			else
 				mx_uls_long_output(files, mx_strjoin(elements[i], "/"), opts);
@@ -51,6 +51,7 @@ void mx_loop_output_dirs(char **elements, int n, struct winsize max, t_options *
 	        mx_del_strarr(&files);
 	    }
 	    closedir(dir);
+
 	    if (n > 1 && elements[i + 1] != NULL)
 	        mx_printchar('\n');
     }

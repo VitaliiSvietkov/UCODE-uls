@@ -34,7 +34,7 @@ void mx_uls_print_table(char **files, struct winsize *max, char *dir_path, t_opt
 		fact_len++;
 	col = fact_len / rows;
 
-    int k; //index of current file;
+    int k = 0; //index of current file;
     bool reached_end = false;
 
 	if (opts->using_s) {
@@ -43,7 +43,8 @@ void mx_uls_print_table(char **files, struct winsize *max, char *dir_path, t_opt
 		mx_printchar('\n');
 	}
     for (int i = 0; i < rows; i++) {
-		k = i;
+		if (opts->using_C)
+			k = i;
 		int el_col = 0; //index of first element of colomn
 		for (int j = 0; j < col; j++) {
 			if (reached_end && j == col - 1)
@@ -74,8 +75,16 @@ void mx_uls_print_table(char **files, struct winsize *max, char *dir_path, t_opt
 				tabs = "  ";
 			else if (j < col - 1)
 				tabs = mx_get_tabs(rows, el_col, k, files);
-			k += rows;
-			el_col += rows;
+			
+			if (opts->using_C) {
+				k += rows;
+				el_col += rows;
+			}
+			else {
+				k++;
+				el_col++;
+			}
+
 			if (j < col - 1)
 				mx_printstr(tabs);
 			if (rows > 1 && j < col - 1)

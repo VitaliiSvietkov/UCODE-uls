@@ -45,12 +45,15 @@ char *mx_get_permisions_string(struct stat *buf, char *path) {
         mx_strcat(result, "-");
 
     // Extended
-    if (mx_get_xattr(path))
-        mx_strcat(result, "@");
-    else if (mx_get_acl(path))
-        mx_strcat(result, "+");
+    if (!S_ISREG(buf->st_mode)) {
+        if (mx_get_xattr(path))
+            mx_strcat(result, "@");
+        else if (mx_get_acl(path))
+            mx_strcat(result, "+");
+        else
+            mx_strcat(result, " ");
+    }
     else
         mx_strcat(result, " ");
-    
     return result;
 }

@@ -1,6 +1,11 @@
 #include "../inc/uls.h"
 
 void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
+    int istty = isatty(fileno(stdout));
+    if (!istty || opts->using_1) {
+		mx_print_strarr(files, "\n");
+		return;
+	}
     int len = 0;
     for (; files[len] != NULL; ++len);
     if (opts) {};
@@ -83,15 +88,17 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
         mx_printstr("  ");
 
         // Group name
-        struct group *gbuf = getgrgid(buf.st_gid);
-        if (gbuf == NULL) {
-            char *mx_err = "uls";
-            perror(mx_err);
-            free(dir_path);
-            exit(1);
+        if (!opts->using_o) {
+            struct group *gbuf = getgrgid(buf.st_gid);
+            if (gbuf == NULL) {
+                char *mx_err = "uls";
+                perror(mx_err);
+                free(dir_path);
+                exit(1);
+            }
+            mx_printstr(gbuf->gr_name);
+            mx_printstr("  ");
         }
-        mx_printstr(gbuf->gr_name);
-        mx_printstr("  ");
         
         // Size of an element
         for (int k = mx_strlen(mx_itoa(buf.st_size)); k < max_size_len; ++k)
@@ -106,8 +113,12 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
             mx_printstr(mtime);
             free(mtime);
         }
-        else
-            mx_printstr(ntime);
+        else {
+            char *ntime_full = mx_strnew(20);
+            ntime_full = mx_strncpy(ntime_full, ntime + 4, 20);
+            mx_printstr(ntime_full);
+            free(ntime_full);
+        }
         mx_printchar(' ');
 
         // Name of an element

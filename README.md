@@ -20,7 +20,7 @@ Call `./uls` from the root directory of the source code after building it.
 
 ## Supported flags
 ```
-usage: uls [-1AaCfGlmprSsTt] [file ...]
+usage: uls [-1AaCfGlmoprSsTt] [file ...]
 ```
 
 ## --help
@@ -61,6 +61,8 @@ usage: uls [-1AaCfGlmprSsTt] [file ...]
      -m      Stream output format; list files across the page, separated by
              commas.
 
+     -o      List in long format, but omit the group id.
+
      -p      Write a slash (`/') after each filename if that file is a direc-
              tory.
 
@@ -84,17 +86,14 @@ usage: uls [-1AaCfGlmprSsTt] [file ...]
      -t      Sort by time modified (most recently modified first) before sort-
              ing the operands by lexicographical order.
 
+     -x      The same as -C, except that the multi-column output is produced
+             with entries sorted across, rather than down, the columns.
+
      The -1, -C, -x, and -l options all override each other; the last one
      specified determines the format used.
 
      The -c and -u options override each other; the last one specified deter-
      mines the file time used.
-
-     The -B, -b, -w, and -q options all override each other; the last one
-     specified determines the format used for non-printable characters.
-
-     The -H, -L and -P options all override each other (either partially or
-     fully); they are applied in the order specified.
 
      By default, ls lists one entry per line to standard output; the excep-
      tions are to terminals or when the -C or -x options are specified.

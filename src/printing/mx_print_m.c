@@ -13,7 +13,10 @@ void mx_print_m(char **elements, struct winsize *max, char *dir_path, t_options 
         free(path);
         mx_print_name(elements[i], &buf, opts);
         cur_len += (mx_strlen(elements[i]) + 2);
-        mx_printstr(", ");
+        if (elements[i + 1] != NULL)
+            mx_printstr(", ");
+        else
+            mx_printchar('\n');
     }
     free(dir_path);
 }

@@ -37,12 +37,14 @@ typedef struct s_options
     bool using_G;
     bool using_l;
     bool using_m;
+    bool using_o;
     bool using_p;
     bool using_r;
     bool using_S;
     bool using_s;
     bool using_T;
     bool using_t;
+    bool using_x;
 }              t_options;
 
 void mx_uls_usage(void);
@@ -63,6 +65,7 @@ char *mx_get_acl(const char *file);
 void mx_set_color(struct stat *buf);
 
 // Sorting
+void mx_strarr_reverse(char **arr);
 void mx_sort_strarr(char **arr, t_options *opts);
 void mx_sort_t(char **arr, char *dir_path, t_options *opts);
 void mx_sort_S(char **arr, char *dir_path, t_options *opts);
