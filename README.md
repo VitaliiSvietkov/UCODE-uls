@@ -20,7 +20,7 @@ Call `./uls` from the root directory of the source code after building it.
 
 ## Supported flags
 ```
-usage: uls [-1AaCfGlmoprSsTt] [file ...]
+usage: uls [-1AaCfGilmoprSsTt] [file ...]
 ```
 
 ## --help
@@ -53,6 +53,9 @@ usage: uls [-1AaCfGlmoprSsTt] [file ...]
 
      -G      Enable colorized output.  This option is equivalent to defining
              CLICOLOR in the environment.  (See below.)
+
+     -i      For each file, print the file's file serial number (inode num-
+             ber).
 
      -l      (The lowercase letter ``ell''.)  List in long format.  (See
              below.)  If the output is to a terminal, a total sum for all the

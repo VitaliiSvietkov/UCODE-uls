@@ -8,6 +8,7 @@ void mx_init_options(t_options *opts) {
     opts->using_F = false;
     opts->using_f = false;
     opts->using_G = false;
+    opts->using_i = false;
     opts->using_l = false;
     opts->using_m = false;
     opts->using_o = false;

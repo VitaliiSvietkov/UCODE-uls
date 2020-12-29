@@ -35,6 +35,7 @@ typedef struct s_options
     bool using_F;
     bool using_f;
     bool using_G;
+    bool using_i;
     bool using_l;
     bool using_m;
     bool using_o;

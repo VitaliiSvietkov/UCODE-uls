@@ -12,12 +12,11 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
 
     struct stat buf;
     char *ntime = mx_strnew(100);
-
     int links_amount_max_len = 0;
     int max_size_len = mx_get_max_size_len(files, &links_amount_max_len, dir_path);
-
-    int total = 0;
     int max_block_size_len = 1;
+    int max_file_inode_len = 1;
+    int total = 0;
     for (int i = 0; i < len; ++i) {
         char *path = mx_strjoin(dir_path, files[i]);
         stat(path, &buf);
@@ -28,6 +27,12 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
                 max_block_size_len = mx_strlen(new_block_size);
             free(new_block_size);
         }
+        if (opts->using_i) {
+            char *new_file_inode_str = mx_itoa(buf.st_ino);
+            if (max_file_inode_len < mx_strlen(new_file_inode_str))
+                max_file_inode_len = mx_strlen(new_file_inode_str);
+            free(new_file_inode_str);
+        }
     }
     mx_printstr("total ");
     mx_printint(total);
@@ -36,6 +41,17 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
     for (int i = 0; i < len; ++i) {
         char *path = mx_strjoin(dir_path, files[i]);
         lstat(path, &buf);
+
+        // File`s file serial number (only with '-i')
+        if (opts->using_i) {
+            char *file_inode_str = mx_itoa(buf.st_ino);
+            int file_inode_len = mx_strlen(file_inode_str);
+            free(file_inode_str);
+            for (int k = 0; k < max_file_inode_len - file_inode_len; k++)
+                mx_printchar(' ');
+            mx_printint(buf.st_ino);
+            mx_printchar(' ');
+        }
 
         // Number of blocks (only with '-s')
         if (opts->using_s) {
