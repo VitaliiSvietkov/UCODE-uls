@@ -8,7 +8,6 @@ void mx_check_flag(char c, t_options *opts) {
             opts->using_C = false;
             break;
         case 'A':
-            opts->using_a = false;
             opts->using_A = true;
             break;
         case 'a':

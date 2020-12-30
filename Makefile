@@ -14,6 +14,7 @@ uls:
 	@mv *.o obj
 	@clang obj/*.o libmx/libmx.a
 	@mv a.out uls
+	@echo 'usage: uls [-aAfGlmosp1rTtx] [file ...]'
 
 uninstall: clean
 	@$(MAKE) -C libmx/ uninstall
