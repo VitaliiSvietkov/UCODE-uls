@@ -6,7 +6,7 @@ int mx_get_max_size_len(char **files, int *links_max_amount_len, char *dir_path)
     int max_links_len = 0;
     for (int i = 0; files[i] != NULL; i++) {
         char *path = mx_strjoin(dir_path, files[i]);
-        stat(path, &buf);
+        lstat(path, &buf);
         free(path);
         if (buf.st_size > max_size) 
             max_size = buf.st_size;

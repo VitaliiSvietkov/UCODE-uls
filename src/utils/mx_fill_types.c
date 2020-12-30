@@ -6,7 +6,7 @@ void mx_fill_types(char **elements, int n, char ***directories, char ***files) {
     char *str_files = NULL;
     char *str_dirs = NULL;
     for (int i = 0; i < n; i++) {
-        if (stat(elements[i], &st) < 0) {
+        if (lstat(elements[i], &st) < 0) {
             char *mx_err = "uls: ";
             mx_err = mx_strjoin(mx_err, elements[i]);
             perror(mx_err);
@@ -14,13 +14,17 @@ void mx_fill_types(char **elements, int n, char ***directories, char ***files) {
             continue;
         }
         
-        if (S_ISDIR(st.st_mode)) {
-            str_dirs = mx_strjoin(str_dirs, elements[i]);
-            str_dirs = mx_strjoin(str_dirs, " ");
-        }
-        else {
+        if (S_ISLNK(st.st_mode)) {
             str_files = mx_strjoin(str_files, elements[i]);
             str_files = mx_strjoin(str_files, " ");
+        }
+        else if (!S_ISDIR(st.st_mode)) {
+            str_files = mx_strjoin(str_files, elements[i]);
+            str_files = mx_strjoin(str_files, " ");
+        }
+        else {
+            str_dirs = mx_strjoin(str_dirs, elements[i]);
+            str_dirs = mx_strjoin(str_dirs, " ");
         }
     }
     if (str_files != NULL) {

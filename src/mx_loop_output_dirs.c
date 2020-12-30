@@ -46,7 +46,7 @@ void mx_loop_output_dirs(char **elements, int n, struct winsize max, t_options *
 			else if(opts->using_C || opts->using_x)
 	        	mx_uls_print_table(files, &max, mx_strjoin(elements[i], "/"), opts);
 			else
-				mx_uls_long_output(files, mx_strjoin(elements[i], "/"), opts);
+				mx_uls_long_output(files, mx_strjoin(elements[i], "/"), opts, true);
 
 	        mx_del_strarr(&files);
 	    }

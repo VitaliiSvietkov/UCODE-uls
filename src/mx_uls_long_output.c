@@ -1,11 +1,6 @@
 #include "../inc/uls.h"
 
-void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
-    int istty = isatty(fileno(stdout));
-    if (!istty || opts->using_1) {
-		mx_print_strarr(files, "\n");
-		return;
-	}
+void mx_uls_long_output(char **files, char *dir_path, t_options *opts, bool is_dir) {
     int len = 0;
     for (; files[len] != NULL; ++len);
     if (opts) {};
@@ -34,9 +29,11 @@ void mx_uls_long_output(char **files, char *dir_path, t_options *opts) {
             free(new_file_inode_str);
         }
     }
-    mx_printstr("total ");
-    mx_printint(total);
-    mx_printchar('\n');
+    if (is_dir) {
+        mx_printstr("total ");
+        mx_printint(total);
+        mx_printchar('\n');
+    }
 
     for (int i = 0; i < len; ++i) {
         char *path = mx_strjoin(dir_path, files[i]);

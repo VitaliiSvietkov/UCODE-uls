@@ -11,6 +11,7 @@ int mx_get_xattr(char *file) {
         if (size >= 0)
             nbytes = listxattr(link, l, 1024,  XATTR_SHOWCOMPRESSION);
     }
+
     mx_strdel(&l);
     mx_strdel(&link);
     return nbytes;
