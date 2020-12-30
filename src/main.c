@@ -20,33 +20,6 @@ int main(int argc, char *argv[]) {
 
     mx_uls(elements, opts);
     
-    /*switch(argc){
-        case 1:
-            dir_name = ".";
-            mx_uls(dir_name);
-            break;
-        case 2:
-            if(mx_strcmp(argv[1], "-l") != 0) {
-                dir_name = argv[1];
-                mx_uls(dir_name);
-            }
-            else {
-                dir_name = ".";
-                mx_flag_l(dir_name);
-            }
-            break;
-        case 3:
-            if(mx_strcmp(argv[1], "-l") != 0){
-                mx_uls_usage();
-            }
-            else {
-                char *dir_name = argv[2];
-                mx_flag_l(dir_name);
-            }
-            break;
-        default:
-            break;
-    }*/
     return 0;
 }
 

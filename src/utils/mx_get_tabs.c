@@ -5,7 +5,7 @@ char *mx_get_tabs(int rows, int col, int curr, char **files) {
     int tmp_col = 0;
     char *tabs = (char *)malloc(2);
     tabs = NULL;
-    tabs = mx_strjoin(tabs, "  ");
+    
     for (int tmp = 0; tmp < rows - 1; tmp++) {
 	tmp_col = col + tmp;
 	if (files[tmp_col + 1] == NULL)
@@ -26,6 +26,7 @@ char *mx_get_tabs(int rows, int col, int curr, char **files) {
             len_curr++;
         }
     }
+    tabs = mx_strjoin(tabs, "\t");
     return tabs;
 }
 

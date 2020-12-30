@@ -3,7 +3,7 @@
 SRCS := $(wildcard src/*.c src/sorting/*.c src/utils/*.c src/printing/*.c)
 HDRS := $(wildcard inc/*.h)
 
-CCFLAGS = -Wall -Wextra -Werror -Wpedantic
+CCFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic
 
 all: uls
 

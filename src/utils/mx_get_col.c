@@ -22,7 +22,7 @@ int mx_get_col(char **el, int n, int ws_col) {
             sum = 0;
             continue;
         }
-        sum += 2;
+        sum += '\t';
         tmp++;
     }
     return min;

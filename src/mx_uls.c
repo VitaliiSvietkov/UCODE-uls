@@ -8,7 +8,7 @@ void mx_uls(char **elements, t_options *opts) {
     if (elements != NULL)
         for (; elements[n] != NULL; n++);
     else {
-        elements = (char **)malloc(2);
+        elements = (char **)malloc(1);
         n = 1;
         elements[0] = mx_strdup(".");
         elements[1] = NULL;
@@ -34,6 +34,7 @@ void mx_uls(char **elements, t_options *opts) {
         mx_del_strarr(&directories);
     }
     free(opts);
-    exit(0);
+    if (elements != NULL)
+        mx_del_strarr(&elements);
 }
 

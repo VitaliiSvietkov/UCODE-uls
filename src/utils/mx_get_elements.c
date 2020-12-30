@@ -12,7 +12,6 @@ char **mx_get_elements(int argc, char **argv) {
     int index = 0;
     for (int i = 1; i < argc; i++) {
         if (argv[i][0] != '-') {
-            res[index] = (char *)malloc(mx_strlen(argv[i]));
             res[index] = mx_strdup(argv[i]);
             index++;
         }

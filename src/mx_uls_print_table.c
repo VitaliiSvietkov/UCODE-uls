@@ -70,9 +70,9 @@ void mx_uls_print_table(char **files, struct winsize *max, char *dir_path, t_opt
 				reached_end = true;
 				break;
 			}
-			char *tabs;
+			char *tabs = "\t";
 			if (rows == 1)
-				tabs = "  ";
+				tabs = "\t";
 			else if (j < col - 1)
 				tabs = mx_get_tabs(rows, el_col, k, files);
 			
